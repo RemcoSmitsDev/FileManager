@@ -73,8 +73,7 @@ class FmCreateCommand(AppCommand):
             create_from = "~"
 
         self.input = InputForPath(
-            caption="New: ",
-            type="",
+            caption="New File: ",
             initial_text=initial_text,
             on_done=self.on_done,
             on_change=self.on_change,
@@ -109,7 +108,7 @@ class FmCreateCommand(AppCommand):
     def is_enabled(self, paths=None):
         return paths is None or len(paths) == 1
 
-    def on_done(self, abspath, input_path, type=""):
+    def on_done(self, abspath, input_path):
         sublime.run_command(
             "fm_creater", {"abspath": abspath, "input_path": input_path}
         )

@@ -1,6 +1,6 @@
 [
     {
-        "caption": "New...",
+        "caption": "New Folder...",
         "command": "fm_create",
         "mnemonic": "N",
         "args": {
@@ -8,28 +8,43 @@
         }
     },
     {
-        "caption": "Open All",
-        "command": "fm_open_all",
-        "mnemonic": "A",
+        "caption": "New File...",
+        "command": "fm_create",
+        "mnemonic": "N",
         "args": {
-            "files": []
+            "paths": []
         }
     },
     {
-        "caption": "Edit to Right",
-        "command": "fm_edit_to_the_right",
-        "mnemonic": "R",
-        "args": {
-            "files": []
-        }
-    },
-    {
-        "caption": "Edit to Left",
-        "command": "fm_edit_to_the_left",
-        "mnemonic": "L",
-        "args": {
-            "files": []
-        }
+        "caption": "New PHP...",
+        "mnemonic": "p",
+        "children": [
+            {
+                "caption": "Class...",
+                "command": "fm_create_php_class",
+                "mnemonic": "C",
+                "args": {
+                    "type": "class",
+                    "paths": []
+                }
+            }, {
+                "caption": "Interface...",
+                "command": "fm_create_php_class",
+                "mnemonic": "I",
+                "args": {
+                    "type": "interface",
+                    "paths": []
+                }
+            }, {
+                "caption": "Trait...",
+                "command": "fm_create_php_class",
+                "mnemonic": "T",
+                "args": {
+                    "type": "trait",
+                    "paths": []
+                }
+            },
+        ]
     },
     {
         "caption": "Rename...",
@@ -67,26 +82,6 @@
         "caption": "-"
     },
     {
-        "mnemonic": "F",
-        "caption": "Find in Files",
-        "command": "fm_find_in_files",
-        "args": {
-            "paths": []
-        }
-    },
-    {
-        "caption": "-"
-    },
-    {
-        "caption": "Open in Explorer",
-        "command": "fm_open_in_explorer",
-        "mnemonic": "O",
-        "args": {
-            "visible_on_platforms": ["windows", "linux"],
-            "paths": []
-        }
-    },
-    {
         "caption": "Open in Finder",
         "command": "fm_open_in_explorer",
         "mnemonic": "O",
@@ -97,16 +92,8 @@
     },
     {
         "mnemonic": "T",
-        "caption": "Open Terminal Here",
+        "caption": "Open Terminal",
         "command": "fm_open_terminal",
-        "args": {
-            "paths": []
-        }
-    },
-    {
-        "caption": "Open in Browser",
-        "mnemonic": "B",
-        "command": "fm_open_in_browser",
         "args": {
             "paths": []
         }
@@ -152,5 +139,4 @@
             }
         ]
     }
-
 ]
