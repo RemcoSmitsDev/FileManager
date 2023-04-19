@@ -2,17 +2,8 @@ import os
 
 import sublime
 
-from .pathhelper import *
-from .sublimefunctions import *
-
-
-def isdigit(string):
-    try:
-        int(string)
-    except ValueError:
-        return False
-    else:
-        return True
+from .pathhelper import computer_friendly, user_friendly
+from .sublimefunctions import sm, transform_aliases
 
 
 def set_status(view, key, value):
@@ -26,8 +17,12 @@ def get_entire_text(view):
     return view.substr(sublime.Region(0, view.size()))
 
 
-class InputForPath(object):
+def StdClass(name="Unknown"):
+    # add the str() function because of the unicode in Python 2
+    return type(str(name).title(), (), {})
 
+
+class InputForPath(object):
     STATUS_KEY = "input_for_path"
 
     def __init__(
@@ -49,7 +44,6 @@ class InputForPath(object):
         no_browser_action=False,
         browser_index=None,
     ):
-
         self.user_on_done = on_done
         self.user_on_change = on_change
         self.user_on_cancel = on_cancel
@@ -108,7 +102,6 @@ class InputForPath(object):
             self.create_input()
 
     def create_input(self):
-
         self.prev_input_path = None
 
         self.input = StdClass("input")
@@ -122,8 +115,6 @@ class InputForPath(object):
         self.input.view.set_name("FileManager::input-for-path")
         self.input.settings = self.input.view.settings()
         self.input.settings.set("tab_completion", False)
-        if not isST3():
-            self.input.view.selection = self.input.view.sel()
 
     def __get_completion_for(
         self, abspath, with_files, pick_first, case_sensitive, can_add_slash
@@ -191,7 +182,6 @@ class InputForPath(object):
             return prefix, folders
 
     def input_on_change(self, input_path):
-
         self.input_path = user_friendly(input_path)
 
         self.input_path = transform_aliases(self.window, self.input_path)
@@ -270,7 +260,6 @@ class InputForPath(object):
             if not text.endswith(tuple(completions)):
                 return reset_settings()
             if "\t" in input_path:
-
                 # there is still some completions available
                 if len(completions) - 1 > index:
                     return replace_with_completion(completions, index)
